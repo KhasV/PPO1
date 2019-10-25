@@ -26,6 +26,10 @@ def getVersionCode() {
     return process.in.text.toInteger()
 }
 
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+def keystoreProperties = new Properties()
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -33,10 +37,20 @@ android {
         applicationId "com.example.helloworld"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode getVersionCode()
-        versionName getVersionName()
+        versionCode = this.getVersionCode()
+        versionName = this.getVersionName()
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false

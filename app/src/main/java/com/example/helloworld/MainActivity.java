@@ -49,10 +49,12 @@ public class MainActivity extends AppCompatActivity {
                             Manifest.permission.READ_PHONE_STATE);
             if (shouldShowRequestPermissionRationale){
                 requestPermissionWithRationale();
-            } else {
+            }
+            else {
                 requestPermission();
             }
-        } else {
+        }
+        else {
             final TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
             final String deviceID = telephonyManager.getDeviceId();
             deviceIDTextView.setText(deviceID);
@@ -62,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
     private void requestPermissionWithRationale() {
         new AlertDialog.Builder(this)
                 .setTitle("Permission needed")
-                .setMessage("This permission is needed to become a lab")
+                .setMessage("This permission is needed to be used in a lab")
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
