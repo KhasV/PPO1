@@ -12,10 +12,10 @@ def getVersionName() {
     def versionValues = getVersionValues()
 
     if (versionValues.size() == 3) {
-        return versionValues[0] + "." + versionValues[1]
+        return "${versionValues[0]}.${versionValues[1]}"
     }
     else {
-        return versionValues[0] + ".0"
+        return "${versionValues[0]}.0"
     }
 }
 
